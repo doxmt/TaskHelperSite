@@ -1,6 +1,6 @@
 @font-face {
   font-family: abster;
-  src: url(font/abster-webfont.woff) format('woff');
+  src: url(../font/abster-webfont.woff) format('woff');
 }
 
 *{
@@ -35,7 +35,7 @@
 .container .header h1 a {
   text-decoration: none;
   color: black;
-  font-family: abster, sans-serif;
+  font-family: abster,sans-serif;
 }
 
 .container .nav ul {
