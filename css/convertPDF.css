@@ -1,0 +1,49 @@
+h2{
+  color: gray;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.pdf-converter {
+  margin: 0 auto; 
+  height: 200px;
+  width: 80%;  
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  display: flex;                 
+  flex-direction: column;      
+  justify-content: center;      
+  align-items: center;         
+  gap: 10px;      
+  cursor: pointer; 
+}
+
+#explanation {
+  color: black;
+  font-size: 30px;
+}
+
+#convertBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#convertBtn:hover {
+  background-color: #ff4d4d;
+  transform: scale(1.05);
+}
+
+#convertBtn:active {
+  transform: scale(0.98);
+}
