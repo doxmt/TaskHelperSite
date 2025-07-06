@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    result.textContent = `"${file.name}" 파일이 PDF로 변환되었습니다. (예시 메시지)`;
-    result.style.color = "green";
+    window.alert(`${file.name} 파일이 PDF로 변환되었습니다.`)
+  
   });
 });
