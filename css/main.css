@@ -15,8 +15,9 @@ body, html {
 }
 
 .container {
-  width: 100%;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* ← 고정 높이 대신 최소 높이로 */
   background-color: #F5F5FA;
 }
 
@@ -64,7 +65,7 @@ body, html {
 
 .container .main {
   width: 100%;
-  height: calc(100vh - 80px);
+  flex: 1;
   position: relative;
   background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(../image/background.jpg);
   background-size: cover;
@@ -120,4 +121,35 @@ body, html {
     opacity: 1;
     transform: scale(1.4);
   }
+}
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ccc; 
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #FFB2B2;
 }
