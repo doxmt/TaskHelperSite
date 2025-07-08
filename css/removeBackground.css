@@ -1,0 +1,116 @@
+/* 반반 정렬 컨테이너 */
+.split-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 40px;
+  flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+}
+
+.upload-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* 미리보기 영역 예시용 기본값 */
+.preview-section {
+  flex: 1;
+  min-width: 300px;
+
+}
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  text-align: center;
+  padding: 20px 20px;
+}
+
+h2{
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.upload-box {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 40px;
+  height: 300px; /* ✅ 높이 통일 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px; /* 중앙정렬 + 아래 마진만 */
+  width: 100%; /* ✅ 반응형 너비 */
+  cursor: pointer;
+  position: relative;
+  background-color: #f7f7f7; /* 미리보기 영역과 톤 맞춤 */
+}
+
+
+.upload-box input {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.upload-box p {
+  margin: 0;
+  color: #666;
+}
+
+#removeBtn {
+  padding: 12px 24px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#removeBtn:hover {
+  background-color: #ff4d4d;
+}
+
+.preview-box {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  height: 300px;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto 20px;
+}
+
+#downloadBtn {
+  padding: 12px 24px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+#downloadBtn:hover {
+  background-color: #ff4d4d;
+}
