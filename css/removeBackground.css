@@ -81,7 +81,7 @@ h2{
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 #removeBtn:hover {
