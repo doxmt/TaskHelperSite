@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Remove Background | Task Helper</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/graphs.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 공통 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="main">
+      <h2>그래프 생성</h2>
+      <input type="text" id="key" placeholder="key" class="input-field" >
+      <input type="number" id="value" placeholder="value" class="input-field" >
+      <button class="add-btn" onclick="addData()">추가</button>
+
+      <div class="chart-grid">
+        <div class="chart-box">
+          <canvas id="chart1"></canvas>
+          <button onclick="downloadChartImage('chart1')">그래프 저장</button>
+        </div>
+        <div class="chart-box">
+          <canvas id="chart2"></canvas>
+          <button onclick="downloadChartImage('chart2')">그래프 저장</button>
+        </div>
+        <div class="chart-box">
+          <canvas id="chart3"></canvas>
+          <button onclick="downloadChartImage('chart3')">그래프 저장</button>
+        </div>
+        <div class="chart-box">
+          <canvas id="chart4"></canvas>
+          <button onclick="downloadChartImage('chart4')">그래프 저장</button>
+        </div>
+        <div class="chart-box">
+          <canvas id="chart5"></canvas>
+          <button onclick="downloadChartImage('chart5')">그래프 저장</button>
+        </div>
+        <div class="chart-box">
+          <canvas id="chart6"></canvas>
+          <button onclick="downloadChartImage('chart6')">그래프 저장</button>
+        </div>
+      </div>
+      
+  </div>
+  <!-- 그래프 6개 그리드 영역 -->
+  
+
+
+  <script src="../script/loadHeader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../script/graphs.js"></script>
+</body>
+</html>

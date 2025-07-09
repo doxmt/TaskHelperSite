@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>여러 그래프 생성</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h3>운동 입력</h3>
+  <input type="text" id="label" placeholder="운동 이름">
+  <input type="number" id="value" placeholder="점수">
+  <button onclick="addData()">추가</button>
+
+  <hr>
+  <h3>그래프</h3>
+  <div>
+    <canvas id="barChart" width="400" height="300"></canvas>
+    <button onclick="downloadChart(barChart, 'bar_chart.png')">막대그래프 저장</button>
+  </div>
+  <div>
+    <canvas id="pieChart" width="400" height="300"></canvas>
+    <button onclick="downloadChart(pieChart, 'pie_chart.png')">파이그래프 저장</button>
+  </div>
+  <div>
+    <canvas id="lineChart" width="400" height="300"></canvas>
+    <button onclick="downloadChart(lineChart, 'line_chart.png')">선그래프 저장</button>
+  </div>
+
+  <script>
+    const labels = [];
+    const values = [];
+
+    const barCtx = document.getElementById('barChart');
+    const pieCtx = document.getElementById('pieChart');
+    const lineCtx = document.getElementById('lineChart');
+
+    const chartConfig = (type, ctx) => new Chart(ctx, {
+      type: type,
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '운동 선호도',
+          data: values,
+          backgroundColor: ['skyblue', 'salmon', 'lightgreen', 'orange', 'violet']
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: type === 'bar' || type === 'line' ? { y: { beginAtZero: true } } : {}
+      }
+    });
+
+    const barChart = chartConfig('bar', barCtx);
+    const pieChart = chartConfig('pie', pieCtx);
+    const lineChart = chartConfig('line', lineCtx);
+
+    function addData() {
+      const label = document.getElementById('label').value;
+      const value = parseInt(document.getElementById('value').value);
+      if (!label || isNaN(value)) return alert("제대로 입력하세요!");
+
+      labels.push(label);
+      values.push(value);
+      [barChart, pieChart, lineChart].forEach(chart => chart.update());
+    }
+
+    function downloadChart(chart, filename) {
+      const link = document.createElement('a');
+      link.href = chart.toBase64Image();
+      link.download = filename;
+      link.click();
+    }
+  </script>
+</body>
+</html>
