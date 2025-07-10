@@ -1,0 +1,83 @@
+h2.page-title {
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.two-column {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.column {
+  flex: 1;
+}
+
+.column.left{
+  margin-left: 20px;
+}
+.column.left h3{
+  padding: 20px;
+  font-size: 25px;
+}
+
+.column.right{
+  margin-right: 20px;
+}
+
+.column.right h2{
+  margin-bottom: 10px;
+}
+
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* 가로 중앙 */
+  justify-content: center; /* 세로 중앙 */
+  border: 2px dashed #ccc;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+  height: 600px;
+}
+
+
+.upload-box:hover {
+  background-color: #f9f9f9;
+}
+
+.submit-btn {
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #357ABD;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+
+.result-frame {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: white;
+}
