@@ -9,39 +9,35 @@
 </head>
 <body>
   <div class="container">
-    
-    <!-- 헤더 자리 -->
     <div id="header-placeholder"></div>
+    <h2 class="page-title">PDF 요약</h2>
 
-    <h2 class="page-title" >PDF 요약</h2>
-
-  <div class="main two-column">
-    <!-- 왼쪽: 업로드 영역 -->
-    <div class="column left">
-      <!-- h2와 버튼을 같은 라인에 두기 -->
-      <form id="summaryForm" action="http://localhost:5050/convert" method="POST" enctype="multipart/form-data" target="summaryResultFrame">
+    <div class="main two-column">
+      <!-- 왼쪽: 업로드 영역 -->
+      <div class="column left">
         <div class="header-row">
           <h2>원본 PDF</h2>
-          <button type="submit" class="submit-btn">요약하기</button>
+          <button class="submit-btn">요약하기</button>
         </div>
-    
-        <div class="upload-box" onclick="document.getElementById('pdfInput').click()">
+
+        <div class="upload-box" id="uploadBox" onclick="document.getElementById('pdfInput').click()">
           <img src="../image/plus_pdf_icon.svg" alt="파일 추가 아이콘" class="file-icon" />
           <h3>PDF를 클릭하거나 드롭하여 업로드하세요.</h3>
-          <input type="file" name="file" id="pdfInput" accept="application/pdf" required hidden />
+          <input type="file" id="pdfInput" accept="application/pdf" hidden />
         </div>
-      </form>
-    </div>
-    
-  
-    <!-- 오른쪽: 결과 표시 영역 -->
-    <div class="column right">
-      <h2>요약 결과</h2>
-      <iframe name="summaryResultFrame" class="result-frame"></iframe>
+      </div>
+
+      <!-- 오른쪽: 결과 표시 영역 -->
+      <div class="column right">
+        <h2>요약 결과</h2>
+        <div id="summaryResultArea" class="result-frame">여기에 요약 결과가 표시됩니다.</div>
+      </div>
     </div>
   </div>
-  </div>
-  
+
   <script src="../script/loadHeader.js"></script>
+  <script src="../script/pdfSummarizer.js"></script>
+  
+
 </body>
 </html>
