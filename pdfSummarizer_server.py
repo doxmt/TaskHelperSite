@@ -1,28 +1,28 @@
-from flask import Flask, request, send_file, url_for
+from flask import Flask, request
 from flask_cors import CORS
-import os
+import fitz  # PyMuPDF
 
 app = Flask(__name__)
-CORS(app) 
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+CORS(app)
 
 @app.route('/convert', methods=['POST'])
-def upload_pdf():
-    file = request.files.get('file')
+def summarize_pdf():
+    file = request.files['file']
     if not file:
-        return "No file uploaded", 400
+        return "파일이 없습니다.", 400
 
-    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-    file.save(filepath)
+    try:
+        # PDF 읽기
+        doc = fitz.open(stream=file.read(), filetype="pdf")
+        full_text = ""
+        for page in doc:
+            full_text += page.get_text()
 
-    # 클라이언트에 직접 보기용 URL 반환
-    return request.host_url.rstrip('/') + url_for('view_pdf', filename=file.filename)
+        # 아주 간단한 요약 (앞 500자만 자르기)
+        summary = full_text.strip().replace('\n', ' ')[:500] + "..."
 
-@app.route('/view/<filename>')
-def view_pdf(filename):
-    filepath = os.path.join(UPLOAD_FOLDER, filename)
-    return send_file(filepath, mimetype='application/pdf', as_attachment=False)
-
+        return summary
+    except Exception as e:
+        return f"요약 실패: {str(e)}", 500
 if __name__ == '__main__':
-    app.run(port=5050, debug=True)
+    app.run(debug=True, port=5050)
