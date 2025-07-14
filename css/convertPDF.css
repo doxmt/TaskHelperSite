@@ -10,7 +10,7 @@ h2{
 }
 
 .pdf-converter {
-  border: 2px dashed black;
+  border: 2px dashed gray;
   border-radius: 10px;
   margin: 0 auto; 
   height: 200px;
