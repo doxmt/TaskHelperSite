@@ -4,15 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryBtn = document.querySelector('.submit-btn');
   const summaryResultArea = document.getElementById('summaryResultArea');
 
-  let uploadedFile = null; // 전역에 저장
+  let uploadedFile = null;
 
-  // 1. PDF 업로드 시 미리보기
-  pdfInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (!file) return;
-
+  // ✅ 공통 함수: 파일 미리보기 렌더링
+  function renderPDF(file) {
     uploadedFile = file;
-
     const fileURL = URL.createObjectURL(file);
     uploadBox.innerHTML = '';
 
@@ -25,9 +21,41 @@ document.addEventListener('DOMContentLoaded', () => {
     embed.style.borderRadius = '8px';
 
     uploadBox.appendChild(embed);
+  }
+
+  // ✅ 클릭해서 업로드
+  pdfInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
+    renderPDF(file);
   });
 
-  // 2. 요약하기 버튼 클릭 시 서버로 전송
+  // ✅ 드래그 앤 드롭 업로드
+  uploadBox.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadBox.style.border = '2px dashed #888';
+    uploadBox.style.backgroundColor = '#f0f0f0';
+  });
+
+  uploadBox.addEventListener('dragleave', () => {
+    uploadBox.style.border = 'none';
+    uploadBox.style.backgroundColor = 'transparent';
+  });
+
+  uploadBox.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadBox.style.border = 'none';
+    uploadBox.style.backgroundColor = 'transparent';
+
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      renderPDF(file);
+    } else {
+      alert("PDF 파일만 업로드 가능합니다.");
+    }
+  });
+
+  // ✅ 요약 요청
   summaryBtn.addEventListener('click', async () => {
     if (!uploadedFile) {
       alert("먼저 PDF 파일을 업로드하세요.");
