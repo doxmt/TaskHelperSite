@@ -1,0 +1,84 @@
+.two-column {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.clock-box {
+  flex: 1;
+  max-width: 50%;
+  box-sizing: border-box;
+  margin-left: 50px;
+  
+}
+
+.timer-box {
+  flex: 1;
+  max-width: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 40px;
+  margin-right: 50px;
+}
+#timer {
+  font-family: 'Courier New', monospace;
+  font-size: 4rem;
+  width: 12ch;
+  text-align: center;
+  display: inline-block;
+  letter-spacing: 0.1ch;
+  background-color: #f0f0f0;
+  border: 3px solid #444;
+  border-radius: 15px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin: 20px 0;
+}
+
+.clock-box button,
+.timer-box button {
+  margin: 0 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.timer-box button:hover {
+  background-color: #ff4d4d;
+}
+
+.timer-box button:active {
+  transform: scale(0.98);
+}
+
+.clock-box {
+  text-align: center;
+  margin-top: 40px;
+}
+.clock-box h2{
+  padding-bottom: 10px;
+}
+.clock{
+  width: 460px;
+  height: 200px;
+  margin: 0 auto;
+  border: 3px solid black;
+  border-radius: 5%;
+  text-align: center;
+  padding: 50px;
+  background-color: #f0f0f0;
+}
+.time {
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.clock .today, .clock .time {
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
