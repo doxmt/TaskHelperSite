@@ -62,3 +62,35 @@ body, html {
 .container .nav ul li a:hover {
   color: #FFB2B2;
 }
+
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ccc; 
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #FFB2B2;
+}
