@@ -1,6 +1,6 @@
 from flask import Flask, request, send_file, render_template
 from flask_cors import CORS
-import os, io, tempfile, subprocess
+import os, io, tempfile
 import fitz  # PyMuPDF
 from rembg import remove
 from PIL import Image
@@ -46,31 +46,10 @@ def graphs_page():
 # 📌 API 엔드포인트
 # -------------------------
 
-# 1. Office → PDF 변환
+# 1. Office → PDF 변환 (Render 환경에서는 비활성화)
 @app.route('/convert-office', methods=['POST'])
 def convert_office_to_pdf():
-    uploaded_file = request.files.get('file')
-    if not uploaded_file:
-        return "파일이 없습니다.", 400
-
-    with tempfile.TemporaryDirectory() as tmpdir:
-        input_path = os.path.join(tmpdir, uploaded_file.filename)
-        uploaded_file.save(input_path)
-
-        try:
-            subprocess.run([
-                "soffice", "--headless", "--convert-to", "pdf",
-                "--outdir", tmpdir, input_path
-            ], check=True)
-        except Exception as e:
-            return f"변환 실패: {str(e)}", 500
-
-        output_pdf = os.path.splitext(input_path)[0] + ".pdf"
-        if not os.path.exists(output_pdf):
-            return "PDF 변환 실패", 500
-
-        return send_file(output_pdf, mimetype='application/pdf',
-                         as_attachment=True, download_name='converted.pdf')
+    return "현재 Render 환경에서는 Office → PDF 변환을 지원하지 않습니다.", 501
 
 # 2. PDF 요약
 @app.route('/summarize', methods=['POST'])
