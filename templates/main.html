@@ -28,7 +28,43 @@
     <div id="footer-placeholder"></div>
 
     <!-- 공통 헤더/푸터 로딩 스크립트 -->
-    <script src="{{ url_for('static', filename='script/loadHeader.js') }}"></script>
-    <script src="{{ url_for('static', filename='script/loadFooter.js') }}"></script>
+    <script>
+      // DOMContentLoaded 이벤트가 발생했을 때 실행
+      document.addEventListener("DOMContentLoaded", () => {
+        // 헤더 로드
+        fetch("{{ url_for('static', filename='components/header.html') }}")
+          .then((response) => {
+            if (!response.ok) {
+              console.error(
+                "헤더 HTML 파일을 찾을 수 없습니다:",
+                response.status
+              );
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("header-placeholder").innerHTML = data;
+          })
+          .catch((err) => console.error("헤더 로딩 중 오류 발생:", err));
+
+        // 푸터 로드
+        fetch("{{ url_for('static', filename='components/footer.html') }}")
+          .then((response) => {
+            if (!response.ok) {
+              console.error(
+                "푸터 HTML 파일을 찾을 수 없습니다:",
+                response.status
+              );
+              throw new Error("Network response was not ok");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+          })
+          .catch((err) => console.error("푸터 로딩 중 오류 발생:", err));
+      });
+    </script>
   </body>
 </html>
