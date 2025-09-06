@@ -6,3 +6,4 @@ pymupdf
 rembg
 Pillow
 gunicorn
+onnxruntime
