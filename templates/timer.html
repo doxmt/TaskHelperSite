@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>타이머 | Task Helper</title>
+    <!-- CSS 경로 Flask 방식 -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/common.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/timer.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="header-placeholder"></div>
+
+      <div class="two-column">
+        <div class="clock-box">
+          <h2>수강신청 타이머</h2>
+          <div class="clock">
+            <div class="today" id="today"></div>
+            <div class="time" id="time"></div>
+            <button id="milliToggleBtn">밀리초 보기</button>
+          </div>
+        </div>
+
+        <div class="timer-box">
+          <h2>발표 타이머</h2>
+          <p id="timer">00:00:00</p>
+          <div class="button-group">
+            <button onclick="startTimer()">시작</button>
+            <button onclick="pauseTimer()">일시정지</button>
+            <button onclick="resetTimer()">초기화</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- JS 경로 Flask 방식 -->
+    <script src="{{ url_for('static', filename='script/loadHeader.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/timer.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/clock.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/loadFooter.js') }}"></script>
+  </body>
+</html>

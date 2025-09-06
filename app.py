@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, render_template
 from flask_cors import CORS
 import os, io, tempfile, subprocess
 import fitz  # PyMuPDF
@@ -11,8 +11,40 @@ from openai import OpenAI
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-app = Flask(__name__)
+# Flask 설정 (templates/, static/ 기본 폴더 사용)
+app = Flask(__name__, template_folder="templates", static_folder="static")
 CORS(app)
+
+# -------------------------
+# 📌 HTML 페이지 라우트
+# -------------------------
+@app.route("/")
+def home():
+    return render_template("main.html")   # 홈페이지
+
+@app.route("/convert-pdf")
+def convert_pdf_page():
+    return render_template("convertPDF.html")
+
+@app.route("/summarize-pdf")
+def summarize_pdf_page():
+    return render_template("pdfSummarizer.html")
+
+@app.route("/remove-bg-page")
+def remove_bg_page():
+    return render_template("removeBackground.html")
+
+@app.route("/timer")
+def timer_page():
+    return render_template("timer.html")
+
+@app.route("/graphs")
+def graphs_page():
+    return render_template("graphs.html")
+
+# -------------------------
+# 📌 API 엔드포인트
+# -------------------------
 
 # 1. Office → PDF 변환
 @app.route('/convert-office', methods=['POST'])
@@ -76,7 +108,7 @@ def summarize_pdf():
 
 # 3. 이미지 배경 제거
 @app.route('/remove-bg', methods=['POST'])
-def remove_bg():
+def remove_bg_api():
     if 'image' not in request.files:
         return {'error': 'No image provided'}, 400
     file = request.files['image']
@@ -86,5 +118,8 @@ def remove_bg():
                      as_attachment=True,
                      download_name='no-bg.png')
 
+# -------------------------
+# 📌 실행
+# -------------------------
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PDF 변환 | Task Helper</title>
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/convertPDF.css" />
+    <!-- CSS 경로 Flask 방식으로 -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/common.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/convertPDF.css') }}"
+    />
   </head>
   <body>
     <div class="container">
@@ -14,10 +21,10 @@
       <div class="main">
         <h2>PDF 변환</h2>
 
-        <!-- ✅ form 태그 추가 -->
+        <!-- ✅ Flask API URL로 수정 -->
         <form
           id="convertForm"
-          action="http://localhost:5059/convert"
+          action="{{ url_for('convert_office_to_pdf') }}"
           method="POST"
           enctype="multipart/form-data"
           target="downloadFrame"
@@ -27,7 +34,7 @@
             onclick="document.getElementById('fileInput').click()"
           >
             <img
-              src="../image/plus_file_icon.svg"
+              src="{{ url_for('static', filename='image/plus_file_icon.svg') }}"
               alt="파일 추가 아이콘"
               class="file-icon"
             />
@@ -52,10 +59,9 @@
     </div>
     <div id="footer-placeholder"></div>
 
-    <script src="../script/loadHeader.js"></script>
-    <script src="../script/convertPDF.js"></script>
-    <script src="../script/loadFooter.js"></script>
-
-    <script></script>
+    <!-- JS 경로 Flask 방식으로 -->
+    <script src="{{ url_for('static', filename='script/loadHeader.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/convertPDF.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/loadFooter.js') }}"></script>
   </body>
 </html>
