@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const pdfInput = document.getElementById('pdfInput');
-  const uploadBox = document.getElementById('uploadBox');
-  const summaryBtn = document.querySelector('.submit-btn');
-  const summaryResultArea = document.getElementById('summaryResultArea');
+document.addEventListener("DOMContentLoaded", () => {
+  const pdfInput = document.getElementById("pdfInput");
+  const uploadBox = document.getElementById("uploadBox");
+  const summaryBtn = document.querySelector(".submit-btn");
+  const summaryResultArea = document.getElementById("summaryResultArea");
 
   let uploadedFile = null;
 
@@ -10,45 +10,45 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderPDF(file) {
     uploadedFile = file;
     const fileURL = URL.createObjectURL(file);
-    uploadBox.innerHTML = '';
+    uploadBox.innerHTML = "";
 
-    const embed = document.createElement('embed');
+    const embed = document.createElement("embed");
     embed.src = fileURL;
-    embed.type = 'application/pdf';
-    embed.width = '100%';
-    embed.height = '598px';
-    embed.style.border = '1px solid #ccc';
-    embed.style.borderRadius = '8px';
+    embed.type = "application/pdf";
+    embed.width = "100%";
+    embed.height = "598px";
+    embed.style.border = "1px solid #ccc";
+    embed.style.borderRadius = "8px";
 
     uploadBox.appendChild(embed);
   }
 
   // ✅ 클릭해서 업로드
-  pdfInput.addEventListener('change', function () {
+  pdfInput.addEventListener("change", function () {
     const file = this.files[0];
     if (!file) return;
     renderPDF(file);
   });
 
   // ✅ 드래그 앤 드롭 업로드
-  uploadBox.addEventListener('dragover', (e) => {
+  uploadBox.addEventListener("dragover", (e) => {
     e.preventDefault();
-    uploadBox.style.border = '2px dashed #888';
-    uploadBox.style.backgroundColor = '#f0f0f0';
+    uploadBox.style.border = "2px dashed #888";
+    uploadBox.style.backgroundColor = "#f0f0f0";
   });
 
-  uploadBox.addEventListener('dragleave', () => {
-    uploadBox.style.border = 'none';
-    uploadBox.style.backgroundColor = 'transparent';
+  uploadBox.addEventListener("dragleave", () => {
+    uploadBox.style.border = "none";
+    uploadBox.style.backgroundColor = "transparent";
   });
 
-  uploadBox.addEventListener('drop', (e) => {
+  uploadBox.addEventListener("drop", (e) => {
     e.preventDefault();
-    uploadBox.style.border = 'none';
-    uploadBox.style.backgroundColor = 'transparent';
+    uploadBox.style.border = "none";
+    uploadBox.style.backgroundColor = "transparent";
 
     const file = e.dataTransfer.files[0];
-    if (file && file.type === 'application/pdf') {
+    if (file && file.type === "application/pdf") {
       renderPDF(file);
     } else {
       alert("PDF 파일만 업로드 가능합니다.");
@@ -56,21 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ✅ 요약 요청
-  summaryBtn.addEventListener('click', async () => {
+  summaryBtn.addEventListener("click", async () => {
     if (!uploadedFile) {
       alert("먼저 PDF 파일을 업로드하세요.");
       return;
     }
 
     const formData = new FormData();
-    formData.append('file', uploadedFile);
+    formData.append("file", uploadedFile);
 
-    summaryResultArea.innerText = '요약 중...';
+    summaryResultArea.innerText = "요약 중...";
 
     try {
-      const res = await fetch('http://localhost:5050/convert', {
-        method: 'POST',
-        body: formData
+      const res = await fetch("/summarize", {
+        method: "POST",
+        body: formData,
       });
 
       if (!res.ok) {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const resultText = await res.text();
       summaryResultArea.innerText = resultText;
     } catch (err) {
-      summaryResultArea.innerText = '요약 중 오류 발생';
+      summaryResultArea.innerText = "요약 중 오류 발생";
       console.error(err);
     }
   });

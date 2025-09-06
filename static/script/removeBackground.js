@@ -1,15 +1,15 @@
-const imageInput = document.getElementById('imageInput');
-const removeBtn = document.getElementById('removeBtn');
-const resultImage = document.getElementById('resultImage');
-const downloadBtn = document.getElementById('downloadBtn');
+const imageInput = document.getElementById("imageInput");
+const removeBtn = document.getElementById("removeBtn");
+const resultImage = document.getElementById("resultImage");
+const downloadBtn = document.getElementById("downloadBtn");
 
-const dropZone = document.getElementById('dropZone');
-const fileNameText = document.getElementById('fileName');
+const dropZone = document.getElementById("dropZone");
+const fileNameText = document.getElementById("fileName");
 
 let uploadedPreviewImg = null;
 let imageBlob = null;
 
-imageInput.addEventListener('change', (e) => {
+imageInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (file) {
     imageBlob = file;
@@ -23,7 +23,7 @@ imageInput.addEventListener('change', (e) => {
     }
 
     // 이미지 생성해서 꽉 채우기
-    uploadedPreviewImg = document.createElement('img');
+    uploadedPreviewImg = document.createElement("img");
     uploadedPreviewImg.src = URL.createObjectURL(file);
     uploadedPreviewImg.alt = "업로드된 이미지 미리보기";
 
@@ -41,14 +41,13 @@ imageInput.addEventListener('change', (e) => {
   }
 });
 
-
-removeBtn.addEventListener('click', async () => {
+removeBtn.addEventListener("click", async () => {
   if (!imageBlob) return alert("이미지를 먼저 업로드하세요!");
 
   const formData = new FormData();
   formData.append("image", imageBlob);
 
-  const res = await fetch("http://localhost:5050/remove-bg", {
+  const res = await fetch("/remove-bg", {
     method: "POST",
     body: formData,
   });
