@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PDF 변환 | Task Helper</title>
-  <link rel="stylesheet" href="../css/common.css" />
-  <link rel="stylesheet" href="../css/convertPDF.css" />
-</head>
-<body>
-  <div class="container">
-    <div id="header-placeholder"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF 변환 | Task Helper</title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/convertPDF.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="header-placeholder"></div>
 
-    <div class="main">
-      <h2>PDF 변환</h2>
+      <div class="main">
+        <h2>PDF 변환</h2>
 
-      <!-- ✅ form 태그 추가 -->
-      <form id="convertForm" action="http://localhost:5050/convert" method="POST" enctype="multipart/form-data" target="downloadFrame">
-        <div class="pdf-converter" onclick="document.getElementById('fileInput').click()">
-          <img src="../image/plus_file_icon.svg" alt="파일 추가 아이콘" class="file-icon" />
-          <h3 id="explanation">파일을 드롭하거나 클릭하여 업로드하세요.</h3>
-          <input type="file" name="file" id="fileInput" accept=".doc,.docx,.ppt,.pptx,.txt,.jpg,.png" required hidden />
-        </div>
-        <button type="submit" id="convertBtn">PDF로 변환</button>
-      </form>
+        <!-- ✅ form 태그 추가 -->
+        <form
+          id="convertForm"
+          action="http://localhost:5059/convert"
+          method="POST"
+          enctype="multipart/form-data"
+          target="downloadFrame"
+        >
+          <div
+            class="pdf-converter"
+            onclick="document.getElementById('fileInput').click()"
+          >
+            <img
+              src="../image/plus_file_icon.svg"
+              alt="파일 추가 아이콘"
+              class="file-icon"
+            />
+            <h3 id="explanation">파일을 드롭하거나 클릭하여 업로드하세요.</h3>
+            <input
+              type="file"
+              name="file"
+              id="fileInput"
+              accept=".doc,.docx,.ppt,.pptx,.txt,.jpg,.png"
+              required
+              hidden
+            />
+          </div>
+          <button type="submit" id="convertBtn">PDF로 변환</button>
+        </form>
 
-      <!-- ✅ 숨겨진 iframe: 응답 받을 용도 -->
-      <iframe name="downloadFrame" style="display: none;"></iframe>
+        <!-- ✅ 숨겨진 iframe: 응답 받을 용도 -->
+        <iframe name="downloadFrame" style="display: none"></iframe>
 
-      <div id="resultMessage"></div>
+        <div id="resultMessage"></div>
+      </div>
     </div>
-  </div>
-  <div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
+    <script src="../script/loadHeader.js"></script>
+    <script src="../script/convertPDF.js"></script>
+    <script src="../script/loadFooter.js"></script>
 
-  <script src="../script/loadHeader.js"></script>
-  <script src="../script/convertPDF.js"></script>
-  <script src="../script/loadFooter.js"></script>
-
-  <script></script>
-</body>
+    <script></script>
+  </body>
 </html>

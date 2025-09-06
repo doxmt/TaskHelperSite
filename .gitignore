@@ -1,3 +1,5 @@
 node_modules/\nuploads/\nprocessed/
 .env
 venv39
+__pycache__/
+*.pyc
